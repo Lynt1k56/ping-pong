@@ -23,7 +23,7 @@ class Player(GameSprite):
         keys = key.get_pressed()
         if keys[K_w] and self.rect.y > 5:
             self.rect.y -= self.speed
-        if keys[K_s] and self.rect.y < win_height - 80:
+        if keys[K_s] and self.rect.y < win_heigth - 80:
             self.rect.y += self.speed
 
 back = (129, 216, 208)
@@ -33,7 +33,7 @@ window = display.set_mode((win_width, win_heigth))
 window.fill(back)
 
 clock = time.Clock()
-FPS = 120
+FPS = 30
 game = True
 finish = False
 
@@ -46,8 +46,8 @@ font = font.Font(None, 35)
 lose1 = font.render('PLAYER 1 LOSE!', True, (180, 0, 0))
 lose2 = font.render('PLAYER 2 LOSE!', True, (180, 0, 0))
 
-speed_x =3
-speed_y =3
+speed_x = 3
+speed_y = 3
 
 
 while game:
@@ -74,7 +74,7 @@ while game:
         window.blit(losel, (200, 200))
         game_over = True
 
-    if ball.rect.x < 0:
+    if ball.rect.x > win_width:
         finish = True
         window.blit(lose2, (200, 200))
         game_over = True
@@ -83,6 +83,7 @@ while game:
     racket2.reset()
     ball.reset()
     display.update()
+
     clock.tick(FPS)
 
 
